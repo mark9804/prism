@@ -13,27 +13,27 @@ Prism is a SPA for generating HSI image grids for conference
 
 ### Install dependencies
 ```bash
-npm install
+pnpm install
 ```
 
 ### Run development server
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 ### Build for production
 ```bash
-npm run build
+pnpm run build
 ```
 
 ### Lint code
 ```bash
-npm run lint
+pnpm run lint
 ```
 
 ### Format code
 ```bash
-npm run format
+pnpm run format
 ```
 
 ## Pre-commit Hooks
