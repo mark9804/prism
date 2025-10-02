@@ -11,9 +11,21 @@
     "format": "prettier --write src/",
     "prepare": "husky"
   },
+  "lint-staged": {
+    "**/*.{ts,js,vue}": [
+      "prettier --config .prettierrc --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --config .prettierrc --write",
+      "git add"
+    ]
+  },
   "dependencies": {
     "@arco-design/web-vue": "^2.57.0",
     "@unocss/reset": "^66.5.2",
+    "pinia": "^3.0.3",
+    "pinia-plugin-persistedstate": "^4.5.0",
     "unocss": "^66.5.2",
     "unplugin-auto-import": "^20.2.0",
     "unplugin-vue-components": "^29.1.0",
@@ -22,6 +34,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/node": "^24.6.2",
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "@vitejs/plugin-vue": "^6.0.1",
@@ -30,6 +43,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.0.0",
     "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
     "prettier": "^3.4.2",
     "sass-embedded": "^1.93.2",
     "typescript": "~5.8.3",
