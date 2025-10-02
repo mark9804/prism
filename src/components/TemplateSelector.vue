@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import type { DatasetType } from "@/types/DatasetType";
-import { useConfigStore } from "@/store/configStore";
+import { configStore } from "@/store/configStore";
 
-const configStore = useConfigStore();
+const useConfigStore = configStore();
 
 const datasetTypes = ref<DatasetType[]>([
   {
@@ -13,18 +13,18 @@ const datasetTypes = ref<DatasetType[]>([
 ]);
 
 const selectedDatasetType = computed({
-  get: () => configStore.getDatasetType,
-  set: (value: string) => configStore.setDatasetType(value),
+  get: () => useConfigStore.getDatasetType,
+  set: (value: string) => useConfigStore.setDatasetType(value),
 });
 
 const additionalRows = computed({
-  get: () => configStore.getAdditionalRows,
-  set: (value: number) => configStore.setAdditionalRows(value),
+  get: () => useConfigStore.getAdditionalRows,
+  set: (value: number) => useConfigStore.setAdditionalRows(value),
 });
 
 const additionalColumns = computed({
-  get: () => configStore.getAdditionalColumns,
-  set: (value: number) => configStore.setAdditionalColumns(value),
+  get: () => useConfigStore.getAdditionalColumns,
+  set: (value: number) => useConfigStore.setAdditionalColumns(value),
 });
 </script>
 

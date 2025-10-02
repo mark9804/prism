@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useConfigStore } from "@/store/configStore";
+import { ref, computed } from "vue";
+import { configStore } from "@/store/configStore";
 
-const configStore = useConfigStore();
+const useConfigStore = configStore();
 
 const overallResult = computed(() => {
-  return configStore.getOverallResult;
+  return useConfigStore.getOverallResult;
 });
 </script>
 
