@@ -22,8 +22,12 @@
     ]
   },
   "dependencies": {
+    "@antv/g2": "^5.4.1",
     "@arco-design/web-vue": "^2.57.0",
+    "@unocss/preset-wind3": "^66.5.2",
     "@unocss/reset": "^66.5.2",
+    "@zumer/snapdom": "^1.9.11",
+    "mat-for-js": "^1.1.0",
     "pinia": "^3.0.3",
     "pinia-plugin-persistedstate": "^4.5.0",
     "unocss": "^66.5.2",

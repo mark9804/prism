@@ -13,8 +13,14 @@ declare module 'vue' {
     ASelect: typeof import('@arco-design/web-vue')['Select']
     ASpace: typeof import('@arco-design/web-vue')['Space']
     AUpload: typeof import('@arco-design/web-vue')['Upload']
+    ComparationProvider: typeof import('./src/components/ComparationProvider.vue')['default']
+    CurveGraphProvider: typeof import('./src/components/CurveGraphProvider.vue')['default']
+    MeasurementContainer: typeof import('./src/components/MeasurementContainer.vue')['default']
+    MeasurementImageProvider: typeof import('./src/components/MeasurementImageProvider.vue')['default']
     MeasurementProvider: typeof import('./src/components/MeasurementProvider.vue')['default']
     OverallResultProvider: typeof import('./src/components/OverallResultProvider.vue')['default']
+    ResultProvider: typeof import('./src/components/ResultProvider.vue')['default']
+    RGBImageProvider: typeof import('./src/components/RGBImageProvider.vue')['default']
     TemplateSelector: typeof import('./src/components/TemplateSelector.vue')['default']
   }
 }

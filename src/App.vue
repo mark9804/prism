@@ -5,6 +5,7 @@ import TemplateSelector from "./components/TemplateSelector.vue";
 <template>
   <h1>Prism</h1>
   <TemplateSelector />
+  <ResultProvider />
 </template>
 
 <style scoped lang="scss"></style>
