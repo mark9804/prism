@@ -4,6 +4,7 @@ import { matrixStore } from "@/store/matrixStore";
 import { hsiTemplateStore } from "@/store/HSITemplateStore";
 import { HSIUtils } from "@/utils/HSIUtils";
 import { IconUpload, IconLoading } from "@arco-design/web-vue/es/icon";
+import { Message } from "@arco-design/web-vue";
 
 const useMatrixStore = matrixStore();
 const useTemplateStore = hsiTemplateStore();
@@ -78,6 +79,7 @@ async function loadMatFile(file: File) {
     renderRGBImage();
   } catch (err) {
     error.value = err instanceof Error ? err.message : "Unknown error";
+    Message.error(error.value || "Unknown error");
     // eslint-disable-next-line no-undef
     console.error("Error loading mat file:", err);
   } finally {
@@ -166,10 +168,6 @@ onMounted(() => {
       <div v-if="isLoading" class="loading-indicator">
         <icon-loading :size="32" />
         <p>Loading...</p>
-      </div>
-
-      <div v-if="error" class="error-message">
-        {{ error }}
       </div>
     </div>
     <div class="legend">Ground Truth RGB</div>

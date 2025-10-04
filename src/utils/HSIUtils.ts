@@ -83,9 +83,9 @@ export class HSIUtils {
         fieldName: dataField,
       };
     } catch (error) {
-      // eslint-disable-next-line no-undef
-      console.error("Error loading .mat file:", error);
-      return null;
+      throw new Error(
+        error instanceof Error ? error.message : (error as unknown as string)
+      );
     }
   }
 

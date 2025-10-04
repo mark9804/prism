@@ -7,7 +7,7 @@ import {
   IconEmpty,
   IconLoading,
 } from "@arco-design/web-vue/es/icon";
-
+import { Message } from "@arco-design/web-vue";
 const useMatrixStore = matrixStore();
 const canvasRef = ref<HTMLCanvasElement | null>(null);
 const isDragging = ref(false);
@@ -71,6 +71,7 @@ async function loadMaskFile(file: File) {
     renderMeasurement();
   } catch (err) {
     error.value = err instanceof Error ? err.message : "Unknown error";
+    Message.error(error.value);
     // eslint-disable-next-line no-undef
     console.error("Error loading mask file:", err);
   } finally {
@@ -185,11 +186,6 @@ onMounted(() => {
       <div v-if="isLoading" class="loading-indicator">
         <icon-loading :size="32" />
         <p>Loading mask...</p>
-      </div>
-
-      <!-- Error -->
-      <div v-if="error" class="error-message">
-        {{ error }}
       </div>
     </div>
     <div class="legend">CASSI Measurement</div>
