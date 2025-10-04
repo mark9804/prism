@@ -12,6 +12,7 @@ declare module 'vue' {
     AInputNumber: typeof import('@arco-design/web-vue')['InputNumber']
     ASelect: typeof import('@arco-design/web-vue')['Select']
     ASpace: typeof import('@arco-design/web-vue')['Space']
+    AUpload: typeof import('@arco-design/web-vue')['Upload']
     MeasurementProvider: typeof import('./src/components/MeasurementProvider.vue')['default']
     OverallResultProvider: typeof import('./src/components/OverallResultProvider.vue')['default']
     TemplateSelector: typeof import('./src/components/TemplateSelector.vue')['default']
