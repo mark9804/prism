@@ -2,7 +2,11 @@
 import { ref, watch, onMounted, computed } from "vue";
 import { matrixStore } from "@/store/matrixStore";
 import { HSIUtils } from "@/utils/HSIUtils";
-import { IconUpload } from "@arco-design/web-vue/es/icon";
+import {
+  IconUpload,
+  IconEmpty,
+  IconLoading,
+} from "@arco-design/web-vue/es/icon";
 
 const useMatrixStore = matrixStore();
 const canvasRef = ref<HTMLCanvasElement | null>(null);
@@ -153,9 +157,9 @@ onMounted(() => {
       <!-- Need GT first -->
       <div
         v-if="!useMatrixStore.groundTruthData && !isLoading"
-        class="placeholder disabled-state"
+        class="placeholder disabled-state color-gray-400"
       >
-        <p>⚠️</p>
+        <icon-empty :size="32" />
         <p>Upload Ground Truth first</p>
       </div>
 
@@ -168,9 +172,7 @@ onMounted(() => {
         "
         class="upload-prompt"
       >
-        <div class="upload-icon">
-          <icon-upload />
-        </div>
+        <icon-upload :size="32" />
         <p>Drag & drop mask.mat here</p>
         <p class="text-sm">or</p>
         <label class="upload-button">
@@ -181,7 +183,7 @@ onMounted(() => {
 
       <!-- Loading -->
       <div v-if="isLoading" class="loading-indicator">
-        <div class="spinner"></div>
+        <icon-loading :size="32" />
         <p>Loading mask...</p>
       </div>
 
@@ -275,16 +277,6 @@ onMounted(() => {
   .loading-indicator {
     text-align: center;
     color: #165dff;
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #165dff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 12px;
-    }
   }
 
   .error-message {

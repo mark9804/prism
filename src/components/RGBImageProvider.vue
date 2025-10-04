@@ -3,7 +3,7 @@ import { ref, onMounted, watch } from "vue";
 import { matrixStore } from "@/store/matrixStore";
 import { hsiTemplateStore } from "@/store/HSITemplateStore";
 import { HSIUtils } from "@/utils/HSIUtils";
-import { IconUpload } from "@arco-design/web-vue/es/icon";
+import { IconUpload, IconLoading } from "@arco-design/web-vue/es/icon";
 
 const useMatrixStore = matrixStore();
 const useTemplateStore = hsiTemplateStore();
@@ -152,11 +152,9 @@ onMounted(() => {
 
       <div
         v-if="!useMatrixStore.groundTruthData && !isLoading"
-        class="upload-prompt"
+        class="upload-prompt color-gray-400"
       >
-        <div class="upload-icon">
-          <icon-upload />
-        </div>
+        <icon-upload :size="32" />
         <p>Drag & drop .mat file here</p>
         <p class="text-sm">or</p>
         <label class="upload-button">
@@ -166,7 +164,7 @@ onMounted(() => {
       </div>
 
       <div v-if="isLoading" class="loading-indicator">
-        <div class="spinner"></div>
+        <icon-loading :size="32" />
         <p>Loading...</p>
       </div>
 
@@ -211,12 +209,6 @@ onMounted(() => {
 
   .upload-prompt {
     text-align: center;
-    color: #8c8c8c;
-
-    .upload-icon {
-      font-size: 48px;
-      margin-bottom: 8px;
-    }
 
     p {
       margin: 4px 0;
@@ -241,16 +233,6 @@ onMounted(() => {
   .loading-indicator {
     text-align: center;
     color: #165dff;
-
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #165dff;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 12px;
-    }
   }
 
   .error-message {
