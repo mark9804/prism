@@ -26,7 +26,37 @@ export class HSIUtils {
   ): Promise<HSIData | null> {
     try {
       const arrayBuffer = await file.arrayBuffer();
-      const matData = matForJs.read(new Uint8Array(arrayBuffer));
+
+      // eslint-disable-next-line no-undef
+      console.log(
+        "Loading mat file:",
+        file.name,
+        "Size:",
+        arrayBuffer.byteLength,
+        "bytes"
+      );
+
+      // Read with mat-for-js
+      // mat-for-js returns: { header: string, data: { fieldName: array } }
+      let matResult;
+
+      try {
+        matResult = matForJs.read(arrayBuffer);
+      } catch (e2) {
+        // eslint-disable-next-line no-undef
+        console.error("Failed with ArrayBuffer method:", e2);
+        throw new Error(
+          `Failed to parse .mat file: ${
+            e2 instanceof Error ? e2.message : String(e2)
+          }`
+        );
+      }
+
+      // eslint-disable-next-line no-undef
+      console.log("MAT file loaded, structure:", matResult);
+
+      // mat-for-js returns { header, data: {...} }
+      const matData = matResult.data || matResult;
 
       // Auto-detect field name if not provided
       const possibleFields = ["img", "truth", "img_expand", "mask"];
@@ -41,13 +71,58 @@ export class HSIUtils {
         }
       }
 
+      // eslint-disable-next-line no-undef
+      console.log(
+        "Available fields:",
+        Object.keys(matData),
+        "Selected:",
+        dataField
+      );
+
       if (!dataField || !matData[dataField]) {
         // eslint-disable-next-line no-undef
-        console.error("Could not find HSI data in .mat file");
-        return null;
+        console.error(
+          "Could not find HSI data in .mat file. Available fields:",
+          Object.keys(matData)
+        );
+        throw new Error(
+          `Could not find HSI data in .mat file. Available fields: ${Object.keys(matData).join(", ")}`
+        );
       }
 
       const rawData = matData[dataField];
+
+      // eslint-disable-next-line no-undef
+      console.log(
+        "Raw data type:",
+        typeof rawData,
+        "Is array:",
+        Array.isArray(rawData)
+      );
+      // eslint-disable-next-line no-undef
+      console.log("Raw data length:", rawData?.length);
+      // eslint-disable-next-line no-undef
+      console.log(
+        "First element type:",
+        typeof rawData?.[0],
+        "Is array:",
+        Array.isArray(rawData?.[0])
+      );
+      if (Array.isArray(rawData) && rawData.length > 0) {
+        // eslint-disable-next-line no-undef
+        console.log("First row length:", rawData[0]?.length);
+        if (Array.isArray(rawData[0]) && rawData[0].length > 0) {
+          // eslint-disable-next-line no-undef
+          console.log(
+            "First pixel type:",
+            typeof rawData[0][0],
+            "Is array:",
+            Array.isArray(rawData[0][0])
+          );
+          // eslint-disable-next-line no-undef
+          console.log("First pixel length:", rawData[0][0]?.length);
+        }
+      }
 
       // Determine dimensions - MATLAB format is typically [H, W, C]
       let height: number, width: number, bands: number;
@@ -65,6 +140,14 @@ export class HSIUtils {
         width = rawData[0].length;
         bands = rawData[0][0].length;
         data = rawData as number[][][];
+
+        // eslint-disable-next-line no-undef
+        console.log(`Data dimensions: [H=${height}, W=${width}, C=${bands}]`);
+        // eslint-disable-next-line no-undef
+        console.log(
+          "Sample pixel values (first 5 bands):",
+          data[0]![0]!.slice(0, 5)
+        );
       } else {
         // eslint-disable-next-line no-undef
         console.error("Unexpected data format in .mat file");

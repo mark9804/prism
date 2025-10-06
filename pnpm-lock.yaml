@@ -23,6 +23,9 @@ importers:
       '@zumer/snapdom':
         specifier: ^1.9.11
         version: 1.9.11
+      echarts:
+        specifier: ^6.0.0
+        version: 6.0.0
       mat-for-js:
         specifier: ^1.1.0
         version: 1.1.0
@@ -47,6 +50,9 @@ importers:
       vue:
         specifier: ^3.5.21
         version: 3.5.22(typescript@5.8.3)
+      vue-echarts:
+        specifier: ^8.0.0
+        version: 8.0.0(echarts@6.0.0)(vue@3.5.22(typescript@5.8.3))
     devDependencies:
       '@eslint/js':
         specifier: ^9.36.0
@@ -1447,6 +1453,9 @@ packages:
   duplexer@0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
 
+  echarts@6.0.0:
+    resolution: {integrity: sha512-Tte/grDQRiETQP4xz3iZWSvoHrkCQtwqd6hs+mifXcjrCuo2iKWbajFObuLJVBlDIJlOzgQPd1hsaKt/3+OMkQ==}
+
   electron-to-chromium@1.5.228:
     resolution: {integrity: sha512-nxkiyuqAn4MJ1QbobwqJILiDtu/jk14hEAWaMiJmNPh1Z+jqoFlBFZjdXwLWGeVSeu9hGLg6+2G9yJaW8rBIFA==}
 
@@ -2341,6 +2350,9 @@ packages:
     peerDependencies:
       typescript: '>=4.8.4'
 
+  tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
@@ -2504,6 +2516,12 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
+  vue-echarts@8.0.0:
+    resolution: {integrity: sha512-tf8KadYTOBukRVJBYChdust4UYTa85lh/d41EmQt3FwP+p65s+Pn9s23/9HKjWnRuTZa6FxL/JgGNFsHBfV5Eg==}
+    peerDependencies:
+      echarts: ^6.0.0
+      vue: ^3.3.0
+
   vue-eslint-parser@10.2.0:
     resolution: {integrity: sha512-CydUvFOQKD928UzZhTp4pr2vWz1L+H99t7Pkln2QSPdvmURT0MoC4wUccfCnuEaihNsu9aYYyk+bep8rlfkUXw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -2566,6 +2584,9 @@ packages:
   yoctocolors@2.1.2:
     resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
     engines: {node: '>=18'}
+
+  zrender@6.0.0:
+    resolution: {integrity: sha512-41dFXEEXuJpNecuUQq6JlbybmnHaqqpGlbH1yxnA5V9MMP4SbohSVZsJIwz+zdjQXSSlR1Vc34EgH1zxyTDvhg==}
 
 snapshots:
 
@@ -4096,6 +4117,11 @@ snapshots:
 
   duplexer@0.1.2: {}
 
+  echarts@6.0.0:
+    dependencies:
+      tslib: 2.3.0
+      zrender: 6.0.0
+
   electron-to-chromium@1.5.228: {}
 
   emoji-regex@10.5.0: {}
@@ -4931,6 +4957,8 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
+  tslib@2.3.0: {}
+
   tslib@2.8.1: {}
 
   type-check@0.4.0:
@@ -5120,6 +5148,11 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
+  vue-echarts@8.0.0(echarts@6.0.0)(vue@3.5.22(typescript@5.8.3)):
+    dependencies:
+      echarts: 6.0.0
+      vue: 3.5.22(typescript@5.8.3)
+
   vue-eslint-parser@10.2.0(eslint@9.36.0(jiti@2.6.1)):
     dependencies:
       debug: 4.4.3
@@ -5177,3 +5210,7 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yoctocolors@2.1.2: {}
+
+  zrender@6.0.0:
+    dependencies:
+      tslib: 2.3.0

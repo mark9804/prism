@@ -10,36 +10,62 @@ let chart: Chart | null = null;
 
 // Initialize chart
 function initChart() {
-  if (!chartRef.value) return;
+  // eslint-disable-next-line no-undef
+  console.log("initChart called, chartRef:", !!chartRef.value);
 
-  chart = new Chart({
-    container: chartRef.value,
-    autoFit: true,
-  });
+  if (!chartRef.value) {
+    // eslint-disable-next-line no-undef
+    console.error("chartRef.value is null!");
+    return;
+  }
 
-  chart
-    .line()
-    .encode("x", "wavelength")
-    .encode("y", "intensity")
-    .encode("color", "type")
-    .style("lineWidth", 2)
-    .axis("x", {
-      title: "Wavelength (nm)",
-      titleFontSize: 14,
-    })
-    .axis("y", {
-      title: "Mean Intensity",
-      titleFontSize: 14,
-    })
-    .legend("color", {
-      position: "top-right",
+  try {
+    chart = new Chart({
+      container: chartRef.value,
+      autoFit: true,
     });
 
-  renderSpectralCurve();
+    // eslint-disable-next-line no-undef
+    console.log("Chart instance created");
+
+    chart
+      .line()
+      .encode("x", "wavelength")
+      .encode("y", "intensity")
+      .encode("color", "type")
+      .style("lineWidth", 2)
+      .axis("x", {
+        title: "Wavelength (nm)",
+        titleFontSize: 14,
+      })
+      .axis("y", {
+        title: "Mean Intensity",
+        titleFontSize: 14,
+      })
+      .legend("color", {
+        position: "top-right",
+      });
+
+    // eslint-disable-next-line no-undef
+    console.log("Chart configured");
+
+    renderSpectralCurve();
+  } catch (err) {
+    // eslint-disable-next-line no-undef
+    console.error("Error initializing chart:", err);
+  }
 }
 
 // Render spectral curve
 function renderSpectralCurve() {
+  // eslint-disable-next-line no-undef
+  console.log(
+    "renderSpectralCurve called, chart:",
+    !!chart,
+    "data:",
+    !!useMatrixStore.groundTruthData
+  );
+
   if (!chart || !useMatrixStore.groundTruthData) {
     if (chart) {
       chart.clear();
@@ -56,11 +82,24 @@ function renderSpectralCurve() {
   const centerW = Math.floor(hsiData.width / 2);
   const patchSize = 30;
 
+  // eslint-disable-next-line no-undef
+  console.log(
+    `Calculating spectrum from patch at [${centerH}, ${centerW}], size ${patchSize}`
+  );
+
   const spectrum = HSIUtils.calculateMeanSpectrum(
     data,
     centerH,
     centerW,
     patchSize
+  );
+
+  // eslint-disable-next-line no-undef
+  console.log(
+    "Spectrum calculated, length:",
+    spectrum.length,
+    "sample values:",
+    spectrum.slice(0, 5)
   );
 
   // Prepare data for G2
@@ -70,10 +109,25 @@ function renderSpectralCurve() {
     type: "Ground Truth",
   }));
 
-  // Update chart
-  chart.clear();
-  chart.data(chartData);
-  chart.render();
+  // eslint-disable-next-line no-undef
+  console.log(
+    "Chart data prepared, points:",
+    chartData.length,
+    "sample:",
+    chartData.slice(0, 3)
+  );
+
+  try {
+    // Update chart
+    chart.clear();
+    chart.data(chartData);
+    chart.render();
+    // eslint-disable-next-line no-undef
+    console.log("Chart rendered successfully");
+  } catch (err) {
+    // eslint-disable-next-line no-undef
+    console.error("Error rendering chart:", err);
+  }
 }
 
 // Watch for changes in ground truth data
