@@ -22,7 +22,7 @@ importers:
         version: 66.5.2
       '@zumer/snapdom':
         specifier: ^1.9.11
-        version: 1.9.11
+        version: 1.9.14
       echarts:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1116,8 +1116,8 @@ packages:
       vue:
         optional: true
 
-  '@zumer/snapdom@1.9.11':
-    resolution: {integrity: sha512-7yEDRCz9AaksPaKEZxH6BlIZ2tpNN0/gI/8coCYgRIYE1ZIDQ8f5KsMPADtupcdj4t3et97+BP9AQYifGOvYdw==}
+  '@zumer/snapdom@1.9.14':
+    resolution: {integrity: sha512-kQARFS/jf+fsIFv9qxfNp8YMeun5tTyhFDk3iv47Lywk5YRldhINWicEZI15fP3FDUCeo8ok+BP0CtnDRFMFRg==}
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -3821,7 +3821,7 @@ snapshots:
       typescript: 5.8.3
       vue: 3.5.22(typescript@5.8.3)
 
-  '@zumer/snapdom@1.9.11': {}
+  '@zumer/snapdom@1.9.14': {}
 
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
